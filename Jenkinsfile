@@ -51,9 +51,9 @@ pipeline {
               sh 'hostname'
               sh '''
                   # Check if the Docker container exists
-                  if docker ps -a --filter "name=richijenkins" --format '{{.Names}}' | grep -q "richijenkins"; then
-                      docker stop richijenkins
-                      docker rm richijenkins
+                  if docker ps -a --filter "name=richiapp" --format '{{.Names}}' | grep -q "richiapp"; then
+                      docker stop richiapp
+                      docker rm richiapp
                   fi
                   
                   # Build a new Docker container
