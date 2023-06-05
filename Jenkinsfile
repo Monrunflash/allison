@@ -49,7 +49,16 @@ pipeline {
           steps {
               sh 'whoami'
               sh 'hostname'
-              sh 'docker build https://github.com/richifor/allison.git#main -t richijenkins:latest'
+              sh '''
+                  # Check if the Docker container exists
+                  if docker ps -a --filter "name=richijenkins" --format '{{.Names}}' | grep -q "richijenkins"; then
+                      docker stop richijenkins
+                      docker rm richijenkins
+                  fi
+                  
+                  # Build a new Docker container
+                  docker build https://github.com/richifor/allison.git#main -t richijenkins:latest
+              '''
           }
       }        
       stage('Despliegue') {
