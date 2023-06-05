@@ -12,6 +12,7 @@ pipeline {
                 sh 'whoami'
                 sh 'echo POR FAVOR !!!!!! fijaos en este dato'
                 sh 'hostname'
+                sh 'sudo apt intall python3 & python3-pip -y'
                 sh 'python3 -m pip install -r requirements.txt'
             }
         }
